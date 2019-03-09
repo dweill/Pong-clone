@@ -82,5 +82,3 @@ const checkPaused = function() {
     ball.x_speed = ballState.x_speed
   }
 }
-
-//TODO: STOP PLAYER PADDLE, SHOW PAUSED TITLE
