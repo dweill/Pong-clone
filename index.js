@@ -7,6 +7,14 @@ canvas.width = width;
 canvas.height = height;
 const context = canvas.getContext('2d');
 
+const startSpeed = 3;
+
+let paused = false;
+const ballState = {
+  y_speed: startSpeed,
+  x_speed: startSpeed
+}
+
 const player = new Player();
 const computer = new Computer();
 const ball = new Ball(600, 300);
@@ -24,6 +32,7 @@ const step = function() {
 
 
 const update = function() {
+  checkPaused();
   ball.update(player.paddle, computer.paddle, player, computer);
   computer.update(ball);
   player.update();
@@ -41,9 +50,27 @@ const render = function() {
 const keysDown = {};
 
 window.addEventListener("keydown", function(event) {
-  keysDown[event.keyCode] = true;
+  if (event.keyCode !== 32) {
+    keysDown[event.keyCode] = true;
+  }
 });
 
 window.addEventListener("keyup", function(event) {
-  delete keysDown[event.keyCode];
+  if (event.keyCode === 32) {
+    paused = !paused;
+  } else {
+    delete keysDown[event.keyCode];
+  }
 });
+
+const checkPaused = function() {
+  if (paused) {
+    ball.x_speed = 0;
+    ball.y_speed = 0;
+  } else {
+    ball.y_speed = ballState.y_speed
+    ball.x_speed = ballState.x_speed
+  }
+}
+
+//pause functionality

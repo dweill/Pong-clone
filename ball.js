@@ -2,9 +2,8 @@ class Ball {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.startSpeed = 2
-    this.x_speed = this.startSpeed;
-    this.y_speed = this.startSpeed;
+    this.x_speed = startSpeed;
+    this.y_speed = startSpeed;
     this.radius = 5;
   }
 
@@ -22,6 +21,10 @@ class Ball {
     let top_y = this.y - 5;
     let bottom_x = this.x + 5;
     let bottom_y = this.y + 5;
+    if (!paused) {
+      ballState.x_speed = this.x_speed;
+      ballState.y_speed = this.y_speed;
+    }
 
     //top and bottom
     if(this.y - 5 < 0) {
@@ -33,14 +36,14 @@ class Ball {
     }
 
     if(this.x < 0) {
-      this.x_speed = this.startSpeed;
-      this.y_speed = this.startSpeed;
+      this.x_speed = startSpeed;
+      this.y_speed = startSpeed;
       this.x = 600;
       this.y = 300;
       computer.score.update();
     } else if(this.x > 1300) {
-      this.x_speed = -this.startSpeed;
-      this.y_speed = -this.startSpeed;
+      this.x_speed = -startSpeed;
+      this.y_speed = -startSpeed;
       this.x = 600;
       this.y = 300;
       player.score.update();
@@ -60,6 +63,10 @@ class Ball {
         this.x_speed = -this.x_speed - 1
         this.x += this.x_speed;
       }
+    }
+    if (!paused) {
+      ballState.x_speed = this.x_speed;
+      ballState.y_speed = this.y_speed;
     }
   }
 }
