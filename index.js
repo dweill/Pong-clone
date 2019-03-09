@@ -45,6 +45,12 @@ const render = function() {
   player.render();
   computer.render();
   ball.render();
+  if (paused) {
+    context.font = '50px ZCOOL QingKe HuangYou';
+    context.fillText(`PAUSED`, 550, 200)
+    context.fillStyle = '#FFF';
+  }
+
 };
 
 
