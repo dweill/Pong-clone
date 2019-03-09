@@ -10,6 +10,7 @@ const context = canvas.getContext('2d');
 const startSpeed = 3;
 
 let paused = false;
+let playerPaused = false;
 const ballState = {
   y_speed: startSpeed,
   x_speed: startSpeed
@@ -58,6 +59,9 @@ window.addEventListener("keydown", function(event) {
 window.addEventListener("keyup", function(event) {
   if (event.keyCode === 32) {
     paused = !paused;
+    playerPaused = paused;
+  } else if (event.keyCode === 27) {
+    playerPaused = false;
   } else {
     delete keysDown[event.keyCode];
   }
@@ -73,4 +77,4 @@ const checkPaused = function() {
   }
 }
 
-//pause functionality
+//TODO: STOP PLAYER PADDLE, SHOW PAUSED TITLE

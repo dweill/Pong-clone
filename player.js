@@ -12,6 +12,9 @@ class Player {
   update() {
     for(var key in keysDown) {
       var value = Number(key);
+      if (paused && playerPaused) {
+        return;
+      }
       if(value == 38) {
         this.paddle.move(0, -4);
       } else if (value == 40) {
