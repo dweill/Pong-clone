@@ -8,3 +8,8 @@ Clone this repo
 Install live-server globally
 
 Run live-server
+
+
+### Requirements
+
+Node >=7.6 (async await support [live-server])
